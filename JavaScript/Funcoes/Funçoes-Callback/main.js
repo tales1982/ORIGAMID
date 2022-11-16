@@ -9,4 +9,4 @@ addEventListener('click', function(){
 //1° é a string click (o evento de clicar)
 //2° é a Função anonima
 
-// Funções anonimas sao aquelas em que o nome nao e definido, escrito como function(){} ou ()=>{} Arrow function
+// Funções anonimas sao aquelas em que o nome nao e definido, escrito como function(){} ou ()=>{} Arrow function..
