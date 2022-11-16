@@ -1,4 +1,4 @@
-//Parâmetros e Argumentos
+//Parâmetros e Argumentos..
 //O imc é o Parâmetro e peso , e altura é o argumento.
 
 function imc(peso, altura) {
