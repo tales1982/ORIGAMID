@@ -5,7 +5,7 @@ const res = document.getElementById("res")
 
 inputEnviar.addEventListener("click", function(ev){
     ev.preventDefault()
-    res.innerText = ` ${nome.value} ${sobrenome.value}`;
+    res.innerText = `Bem vindo: ${nome.value} ${sobrenome.value}.`;
 })
 
 
