@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STORE</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.1/redux.min.js"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 2rem; }
+    button { font-size: 1.5rem; margin: 0.5rem; width: 3rem; }
+    #counter-paragraphe { font-size: 2rem; margin: 1rem; display: block; }
+  </style>
+</head>
+<body>
+  <h1>NUMBER COUNTER</h1>
+  <p id="counter-paragraphe">0</p>
+  <button id="decrease">-</button>
+  <button id="increase">+</button>
+
+  <script>
+    const { createStore } = Redux;
+
+    // 1) Defina seu reducer
+    function reducer(state = 0, action) {
+      switch (action.type) {
+        case 'increase': return state + action.payload;
+        case 'decrease': return state - action.payload;
+        default: return state;
+      }
+    }
+
+    // 2) Crie action creators
+    function increase(payload) {
+      return { type: 'increase', payload };
+    }
+    function decrease(payload) {
+      return { type: 'decrease', payload };
+    }
+
+    // 3) Crie a store
+    const store = createStore(reducer);
+
+    // 4) Selecione elementos do DOM
+    const P           = document.getElementById('counter-paragraphe');
+    const btnIncrease = document.getElementById('increase');
+    const btnDecrease = document.getElementById('decrease');
+
+    // 5) Render: atualiza o parágrafo com o estado atual
+    function render() {
+      P.textContent = store.getState();
+    }
+
+    // 6) Inscreva o render para rodar sempre que o estado mudar
+    store.subscribe(render);
+
+    // 7) Inicializa a UI com o estado padrão
+    render();
+
+    // 8) Adicione os listeners para disparar actions
+    btnIncrease.addEventListener('click', () => {
+      store.dispatch(increase(1));
+    });
+    btnDecrease.addEventListener('click', () => {
+      store.dispatch(decrease(1));
+    });
+  </script>
+</body>
+</html>

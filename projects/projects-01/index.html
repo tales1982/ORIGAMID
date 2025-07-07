@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STORE</title>
+    <!-- Importe o Redux -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.1/redux.min.js"></script>
+  </head>
+  <body>
+    <script>
+      const SOMAR = "SOMAR";
+      const MULTI = "MULTIPLICAR";
+      const DIV = "DIVIDIR";
+      const SUBT = "SUBTRAIR";
+
+      function reducer(state = 10, action) {
+        switch (action.type) {
+          case SOMAR:
+            return state + action.payload;
+          case MULTI:
+            return state * action.payload;
+          case DIV:
+            return state / action.payload;
+          case SUBT:
+            return state - action.payload;
+          default:
+            return state;
+        }
+      }
+
+      //FUNCOES PARA ENVIAR O TYPE E PAYLOAD
+      function somar(payload) {
+        return {
+          type: SOMAR,
+          payload,
+        };
+      }
+
+      function mult(payload) {
+        return {
+          type: MULTI,
+          payload,
+        };
+      }
+
+      function div(payload) {
+        return {
+          type: DIV,
+          payload,
+        };
+      }
+
+      function subt(payload) {
+        return {
+          type: SUBT,
+          payload,
+        };
+      }
+
+      //CREATE A STORE
+      const store = Redux.createStore(reducer);
+
+      // DISPACH
+      let state = store.getState();
+      console.log("Valor original: " + state);
+
+      store.dispatch(somar(50));
+      state = store.getState();
+      console.log("Somar: " + state); // 60
+
+      store.dispatch(mult(2));
+      state = store.getState();
+      console.log("Multiplicar: " + state);
+
+      store.dispatch(div(2));
+      state = store.getState();
+      console.log("Dividir: " + state);
+
+      store.dispatch(subt(2));
+      state = store.getState();
+      console.log("Subtrair: " + state);
+    </script>
+  </body>
+</html>
